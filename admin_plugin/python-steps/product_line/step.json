@@ -1,0 +1,63 @@
+/* This file is the descriptor for the Custom python step documents-admin */
+{
+    "meta" : {
+        // label: name of the scenario step as displayed, should be short
+        "label": "Assign/Unassign product line",
+
+        // description: longer string to help end users understand what this scenario step does
+        "description": "Assign/Unassign product line",
+
+        // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
+        "icon": "icon-puzzle-piece"
+    },
+
+
+    /* params:
+    DSS will generate a formular from this list of requested parameters.
+    Your component code can then access the value provided by users using the "name" field of each parameter.
+
+    Available parameter types include:
+    STRING, INT, DOUBLE, BOOLEAN, DATE, SELECT, TEXTAREA, PRESET and others.
+
+    For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
+    */
+    "params": [
+        {
+            "name": "dataset",
+            "label": "Dataset name",
+            "type": "STRING",
+            "description": "Dataset name",
+            "mandatory": true
+        },
+        {
+            "name": "partitions",
+            "label": "Partitions",
+            "type": "STRING",
+            "description": "Dataset partitions"
+        },
+        {
+            "name": "ignore_missing_partitions",
+            "label": "Ignore missing partitions",
+            "type": "BOOLEAN",
+            "mandatory": true,
+            "defaultValue": false,
+            "description": "Don't mark the step as failed, even if the partition does not exists"
+        },
+        {
+            "name": "action",
+            "label": "Choose your action",
+            "type": "SELECT",
+            "mandatory": true,
+            "selectChoices": [
+                { "value": "product_lines_assign", "label": "Assign product line to driver"},
+                { "value": "product_lines_unassign", "label": "Unassign product line to driver"}
+              ]
+        },
+        {
+            "name": "token",
+            "label": "Token",
+            "type": "PASSWORD",
+            "mandatory": true
+        }
+    ]
+}
